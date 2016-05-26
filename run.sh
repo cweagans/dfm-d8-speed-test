@@ -35,7 +35,7 @@ function osx_prepEnvironment {
 
 # Note: normally, using sudo for brew cask install is not needed, but doing it
 # here to avoid the pw prompts for the .pkg installs.
-echo "Preparing environment..."
+echo "--> Preparing environment..."
 case "$BENCHMARK" in
   "linux")
     linux_updateStartDocker
