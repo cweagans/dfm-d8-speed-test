@@ -2,9 +2,6 @@ sudo: required
 
 language: generic
 
-env:
-  - MACHINE_STORAGE_PATH=${TRAVIS_BUILD_DIR}/.docker/machine
-
 matrix:
   fast_finish: true
   allow_failures:
@@ -24,21 +21,25 @@ matrix:
       sudo: required
       env:
         - BENCHMARK="toolbox"
+        - MACHINE_STORAGE_PATH=${TRAVIS_BUILD_DIR}/.docker/machine
     - os: osx
       osx_image: xcode7.3
       sudo: required
       env:
         - BENCHMARK="toolbox_nfs"
+        - MACHINE_STORAGE_PATH=${TRAVIS_BUILD_DIR}/.docker/machine
     - os: osx
       osx_image: xcode7.3
       sudo: required
       env:
         - BENCHMARK="xhyve"
+        - MACHINE_STORAGE_PATH=${TRAVIS_BUILD_DIR}/.docker/machine
     - os: osx
       osx_image: xcode7.3
       sudo: required
       env:
         - BENCHMARK="xhyve_nfs"
+        - MACHINE_STORAGE_PATH=${TRAVIS_BUILD_DIR}/.docker/machine
     - os: osx
       osx_image: xcode7.3
       sudo: required
@@ -49,19 +50,3 @@ matrix:
 
 script:
   - ./run.sh
-
-# before_install:
-#   - ./prep-docker.sh
-#
-#   - docker-compose -v
-#   - docker -v
-#   # The containers are started back here because MySQL needs some time to start up.
-#   # Started separately so that db has more time.
-#   - docker-compose up -d db
-#   - docker-compose up -d web
-# install:
-#   - composer install
-# before_script:
-#   - travis_retry docker-compose exec web bash -c "cd /var/www/hfyw_easysite; make db;"
-# script:
-#   - docker-compose exec web bash -c "cd /var/www/hfyw_easysite; make test-all"
