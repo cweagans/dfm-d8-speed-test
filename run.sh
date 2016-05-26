@@ -28,8 +28,13 @@ function osx_prepEnvironment {
     brew update
     echo "--> Updating Homebrew Cask."
     brew cask update
-    echo "--> Installing PHP 7 and Composer."
-    brew install php70 composer
+    echo "--> Installing PHP 7.0."
+    brew install php70
+    echo "--> Installing latest Composer."
+    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+    php -r "if (hash_file('SHA384', 'composer-setup.php') === '92102166af5abdb03f49ce52a40591073a7b859a86e8ff13338cf7db58a19f7844fbc0bb79b2773bf30791e935dbd938') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+    php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+    php -r "unlink('composer-setup.php');"
   fi
 }
 
@@ -38,6 +43,8 @@ function osx_prepEnvironment {
 echo "--> Preparing environment..."
 case "$BENCHMARK" in
   "linux")
+    echo "--> Installing latest Composer."
+    composer self-update
     linux_updateStartDocker
     ;;
 
