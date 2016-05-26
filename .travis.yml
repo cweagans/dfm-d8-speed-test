@@ -1,0 +1,56 @@
+sudo: required
+
+language: generic
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - env: BENCHMARK="xhyve"
+    - env: BENCHMARK="xhyve_nfs"
+  include:
+    - os: linux
+      sudo: required
+      language: php
+      env:
+        - BENCHMARK="linux"
+    - os: osx
+      sudo: required
+      env:
+        - BENCHMARK="toolbox"
+    - os: osx
+      sudo: required
+      env:
+        - BENCHMARK="toolbox_nfs"
+    - os: osx
+      sudo: required
+      env:
+        - BENCHMARK="xhyve"
+    - os: osx
+      sudo: required
+      env:
+        - BENCHMARK="xhyve_nfs"
+    - os: osx
+      sudo: required
+      env:
+        - BENCHMARK="dfm"
+        # DFM_BETA_KEY
+        - secure: "OzR78y1qWVila1235pGxpMbmYTKeFcOZdi2LZxVOfVizWWAqemoOTew1Wz+cqR0L7VcmukaG9bZxK1F98LuUNfKtRzS9l8kEg0KSp+GHf7vlHwpNdUyWFWGU4I+RVlFex+KtUPl1AmDyIXU3iG9BMIPOrWU+B7grawSgnjbEs9/HzZ7W0kTxAGjsyYMi33JF9nnTKJsy7MQ00oi4ooV8Y1hPvklybXGafADBxmvMVo3z1mGah7Cxp3gOHY++XzhNKjYXAK6D9lNyIA4xGBnG90ubc4JmvPYVxxMm1Y/+FZvHsQhZHkh6ZMVid/yGJpV2eFMvOXiP5b76cZNhJbJCNy0tRVJ/keL2AcgkIQbdV6jw36F5CNZyy8hYvEMXVH2uphT70NCC6REhUF1UeaFPOw5yN/iXREjeUp8H5CrBPiJyM4C+U+viePl5a5C9hbdolCoSaOzeBt+FjOca0juLZn6Tah6hU6jhqkrog/3+o7KNo0agWFjiWP3KwfNTKAPU6jQhRoul19SnulaaKQVzYLcTqA+qgiT7gT/AjYJYCnvICcZzvUvOdMqvCirVtDixm09N7wg7SkTpilQmM324bBmN+GufgqFc+2Vh7OtBJkegL/XAafBkxE+JxCdixvhHKOPsdmmLCNuow/x0YKXTRVFstl7g9ZlXQ0VSxfThjiM="
+
+script:
+  - ./run.sh
+
+# before_install:
+#   - ./prep-docker.sh
+#
+#   - docker-compose -v
+#   - docker -v
+#   # The containers are started back here because MySQL needs some time to start up.
+#   # Started separately so that db has more time.
+#   - docker-compose up -d db
+#   - docker-compose up -d web
+# install:
+#   - composer install
+# before_script:
+#   - travis_retry docker-compose exec web bash -c "cd /var/www/hfyw_easysite; make db;"
+# script:
+#   - docker-compose exec web bash -c "cd /var/www/hfyw_easysite; make test-all"

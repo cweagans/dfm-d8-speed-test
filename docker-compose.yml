@@ -1,0 +1,22 @@
+web:
+  image: webdevops/php-nginx:ubuntu-16.04
+  mem_limit: 512M
+  environment:
+    - WEB_DOCUMENT_ROOT=/var/www/benchmark/docroot
+  volumes:
+    - .:/var/www/benchmark
+  ports:
+    - "80:80"
+  links:
+    - db
+db:
+  image: mysql:5.7
+  mem_limit: 512M
+  environment:
+    - MYSQL_ROOT_PASSWORD=root
+    - MYSQL_DATABASE=benchmark
+    - MYSQL_ALLOW_EMPTY_PASSWORD=false
+  expose:
+    - "3306"
+  ports:
+    - "3306:3306"

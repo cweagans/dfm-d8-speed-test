@@ -1,0 +1,28 @@
+{
+  "name": "cweagans/dfm-d8-speed-test",
+  "description": "A benchmark suite for comparing different methods of running Docker containers.",
+  "authors": [
+    {
+      "name": "Cameron Eagans",
+      "email": "me@cweagans.net"
+    }
+  ],
+  "license": "WTFPL",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "preferred-install": "dist"
+  },
+  "require": {
+    "composer/installers": "~1.0",
+    "drupal/core": "~8.1",
+    "drush/drush": "~8.1",
+    "mikey179/vfsStream": "~1.2",
+    "phpunit/phpunit": "~4.8"
+  },
+  "extra": {
+    "installer-paths": {
+      "docroot/core": ["type:drupal-core"]
+    }
+  }
+}
