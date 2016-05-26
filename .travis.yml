@@ -20,22 +20,27 @@ matrix:
       services:
         - docker
     - os: osx
+      osx_image: xcode7.3
       sudo: required
       env:
         - BENCHMARK="toolbox"
     - os: osx
+      osx_image: xcode7.3
       sudo: required
       env:
         - BENCHMARK="toolbox_nfs"
     - os: osx
+      osx_image: xcode7.3
       sudo: required
       env:
         - BENCHMARK="xhyve"
     - os: osx
+      osx_image: xcode7.3
       sudo: required
       env:
         - BENCHMARK="xhyve_nfs"
     - os: osx
+      osx_image: xcode7.3
       sudo: required
       env:
         - BENCHMARK="dfm"
