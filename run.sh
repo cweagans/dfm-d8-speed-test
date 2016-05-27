@@ -53,7 +53,7 @@ case "$BENCHMARK" in
     echo "--> Installing Docker Toolbox."
     sudo brew cask install dockertoolbox
     echo "--> Creating Docker machine for test."
-    docker-machine create dev --driver=virtualbox
+    docker-machine create dev --driver=virtualbox --virtualbox-no-vtx-check
     eval $(docker-machine env dev)
     ;;
 
@@ -64,7 +64,7 @@ case "$BENCHMARK" in
     echo "--> Installing docker-machine-nfs"
     brew install docker-machine-nfs
     echo "--> Creating Docker machine for test."
-    docker-machine create dev --driver=virtualbox
+    docker-machine create dev --driver=virtualbox --virtualbox-no-vtx-check
     sudo docker-machine-nfs dev
     eval $(docker-machine env dev)
     ;;
