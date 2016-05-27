@@ -121,11 +121,11 @@ docker-compose up -d web
 time docker-compose exec web bash -c "cd /var/www/benchmark; grep -r some-string *"
 
 # Test 1: How long does it take to install Drupal?
-time docker-compose exec web bash -c "cd /var/www/benchmark/docroot; ../vendor/bin/drush -y si standard --db-url=mysql://root:root@db/benchmark --db-su=root --db-su-pw=root --account-pass=admin"
+time docker-compose exec web bash -c "cd /var/www/benchmark/docroot; ../vendor/bin/drush -y si standard --db-url=mysql://root:root@db/benchmark --db-su=root --db-su-pw=root --account-pass=admin > /dev/null"
 
 # Test 2: How long does it take to load the front page?
-time docker-compose exec web bash -c "cd /var/www/benchmark; curl http://localhost"
+time docker-compose exec web bash -c "cd /var/www/benchmark; curl http://localhost > /dev/null"
 
 # Test 3: How long does it take to run Drupal's unit tests?
 # Note: this uses a custom phpunit.xml.dist file that excludes some tests that fail on PHP7 + the Composer integration test.
-time docker-compose exec web bash -c "cd /var/www/benchmark; ./vendor/bin/phpunit"
+time docker-compose exec web bash -c "cd /var/www/benchmark; ./vendor/bin/phpunit > /dev/null"
