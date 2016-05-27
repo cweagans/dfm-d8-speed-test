@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit bootstrap="docroot/core/tests/bootstrap.php" colors="true">
+  <php>
+    <ini name="error_reporting" value="32767"/>
+    <ini name="memory_limit" value="-1"/>
+  </php>
+  <testsuites>
+    <testsuite name="unit">
+      <directory>./docroot/core/tests/Drupal/Tests</directory>
+      <directory>./docroot/core/modules/*/tests/src/Unit</directory>
+      <directory>./docroot/modules/*/tests/src/Unit</directory>
+      <!-- Exclude Composer's vendor directory so we don't run tests there. -->
+      <exclude>./vendor</exclude>
+      <exclude>./docroot/core/tests/Drupal/Tests/ComposerIntegrationTest.php</exclude>
+      <exclude>./docroot/core/tests/Drupal/Tests/Core/Cache/CacheTagsInvalidatorTest.php</exclude>
+      <exclude>./docroot/core/tests/Drupal/Tests/Core/Cache/Context/CacheContextsManagerTest.php</exclude>
+      <exclude>./docroot/core/tests/Drupal/Tests/Core/DependencyInjection/ContainerBuilderTest.php</exclude>
+      <exclude>./docroot/core/tests/Drupal/Tests/Core/DependencyInjection/ContainerTest.php</exclude>
+      <exclude>./docroot/core/tests/Drupal/Tests/Core/Render/Placeholder/ChainedPlaceholderStrategyTest.php</exclude>
+      <exclude>./docroot/core/modules/big_pipe/tests/src/Unit/Render/BigPipeResponseAttachmentsProcessorTest.php</exclude>
+    </testsuite>
+  </testsuites>
+</phpunit>

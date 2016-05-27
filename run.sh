@@ -127,5 +127,5 @@ time docker-compose exec web bash -c "cd /var/www/benchmark/docroot; ../vendor/b
 time docker-compose exec web bash -c "cd /var/www/benchmark; curl http://localhost"
 
 # Test 3: How long does it take to run Drupal's unit tests?
-# Note: The Composer group is excluded here because it fails in this setup.
-time docker-compose exec web bash -c "cd /var/www/benchmark; ./vendor/bin/phpunit -c ./docroot/core/phpunit.xml.dist --testsuite=unit --exclude-group=Composer"
+# Note: this uses a custom phpunit.xml.dist file that excludes some tests that fail on PHP7 + the Composer integration test.
+time docker-compose exec web bash -c "cd /var/www/benchmark; ./vendor/bin/phpunit"
